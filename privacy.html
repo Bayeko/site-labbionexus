@@ -1,158 +1,178 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — Lab BioNexus</title>
-  <meta name="description" content="Privacy policy for Lab BioNexus — how we handle your data.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            brand: {
-              50: '#eef2ff', 100: '#e0e7ff', 400: '#818cf8',
-              500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Lab BioNexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+                        accent: { 50:'#ecfdf5', 100:'#d1fae5', 200:'#a7f3d0', 300:'#6ee7b7', 400:'#34d399', 500:'#10b981', 600:'#059669' },
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-300 font-sans antialiased">
-
-  <!-- Nav -->
-  <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded-xl bg-slate-900 grid place-items-center">
-          <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.3 24.3 0 0 1 4.5 0m0 0v5.714a2.25 2.25 0 0 0 .659 1.591L19 14.5m-4.75-11.396c.251.023.501.05.75.082M5 14.5l-1.456 1.456a2.25 2.25 0 0 0-.084 3.098l.064.068a2.25 2.25 0 0 0 3.178-.062L9 16.75m-4-2.25 4 2.25m0 0 2.25 3m4.5-5.25 1.456 1.456a2.25 2.25 0 0 1 .084 3.098l-.064.068a2.25 2.25 0 0 1-3.178-.062L15 16.75m4-2.25-4 2.25m0 0-2.25 3"/>
-          </svg>
+<body class="bg-white font-sans text-slate-700">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center text-white font-bold text-sm">Î»</div>
+                <span class="text-lg font-semibold text-slate-900">Lab BioNexus</span>
+            </div>
+            <a href="/" class="text-sm text-brand-600 hover:text-brand-700 font-medium">â Back to homepage</a>
         </div>
-        <span class="text-white font-semibold text-lg tracking-tight">Lab BioNexus</span>
-      </a>
-      <a href="/" class="text-sm text-slate-400 hover:text-white transition-colors">&larr; Back to homepage</a>
-    </div>
-  </nav>
+    </header>
 
-  <!-- Content -->
-  <main class="pt-32 pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
+        <p class="text-sm text-slate-500 mb-12">Data protection information - Last updated: March 2026</p>
 
-      <h1 class="text-3xl font-bold text-white mb-2">Privacy Policy</h1>
-      <p class="text-sm text-slate-500 mb-10">In accordance with the Swiss Federal Act on Data Protection (nFADP/revDSG) and, where applicable, the EU General Data Protection Regulation (GDPR)</p>
-
-      <div class="space-y-8 text-slate-300 leading-relaxed">
-
-        <!-- 1 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">1. Data controller</h2>
-          <p>
-            Amir Messadene, operating as Lab BioNexus<br>
-            Route des Combes 20, 1726 Farvagny, Switzerland<br>
-            <a href="mailto:info@labionexus.ch" class="text-brand-400 hover:text-brand-300 transition-colors">info@labionexus.ch</a>
-          </p>
-          <p class="mt-2">If you have questions about how we handle your data, contact us at the address above.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Data Controller</h2>
+            <p class="text-slate-600 mb-3">
+                <strong>Amir Messadene</strong><br>
+                Lab BioNexus<br>
+                Route des Combes 20<br>
+                1726 Farvagny<br>
+                Switzerland
+            </p>
+            <p class="text-slate-600">
+                <strong>Email:</strong> <a href="mailto:info@labionexus.ch" class="text-brand-600 hover:text-brand-700">info@labionexus.ch</a>
+            </p>
         </section>
 
-        <!-- 2 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">2. What data we collect</h2>
-
-          <h3 class="text-white font-medium mt-4 mb-2">2.1 Contact form and email</h3>
-          <p>When you use our contact form or email us directly, we collect your name, email address, and the content of your message. We use this data solely to respond to your inquiry.</p>
-
-          <h3 class="text-white font-medium mt-4 mb-2">2.2 Server logs</h3>
-          <p>This website is hosted on GitHub Pages. When you visit, GitHub may collect standard server log data including your IP address, browser type, referring page, and timestamp. This data is processed by GitHub, Inc. under their own privacy policy. We do not have access to individual server logs.</p>
-
-          <h3 class="text-white font-medium mt-4 mb-2">2.3 Cookies</h3>
-          <p>This website does not use cookies or tracking technologies. We do not use analytics services such as Google Analytics. No advertising or remarketing pixels are present on this site.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">What Data We Collect</h2>
+            <p class="text-slate-600 mb-4">
+                Lab BioNexus collects minimal data and is committed to your privacy. The types of information we may collect include:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-slate-600 mb-4">
+                <li><strong>Contact Form Data:</strong> When you submit a contact form, we collect the information you provide, including name, email address, and message content.</li>
+                <li><strong>Server Logs:</strong> We automatically receive technical information about your visit, including your IP address, browser type, pages visited, and access times, as maintained by our hosting providers.</li>
+                <li><strong>Cookies:</strong> Our website does NOT use tracking cookies or any cookies designed to monitor your behavior across sites. We do not use cookies for analytics or advertising purposes.</li>
+            </ul>
+            <p class="text-slate-600 text-sm italic">
+                Note: We are committed to privacy and use no third-party tracking tools, analytics services, or behavioral targeting.
+            </p>
         </section>
 
-        <!-- 3 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">3. Purpose and legal basis</h2>
-          <p>We process personal data exclusively for the following purposes:</p>
-          <div class="mt-3 space-y-2">
-            <p><strong class="text-white">Responding to inquiries</strong> — Legal basis: your consent (by voluntarily submitting the form) and our legitimate interest in communicating with prospective customers (Art. 31 nFADP; Art. 6(1)(f) GDPR).</p>
-            <p><strong class="text-white">Website operation</strong> — Legal basis: legitimate interest in providing a functional, secure website.</p>
-          </div>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Purpose and Legal Basis</h2>
+            <p class="text-slate-600 mb-4">
+                We process personal data only for the following purposes:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-slate-600 mb-4">
+                <li><strong>Responding to Contact Requests:</strong> To answer your inquiries and provide the information or assistance you request.</li>
+                <li><strong>Service Delivery:</strong> To provide and maintain the functionality of our website.</li>
+                <li><strong>Legal Compliance:</strong> To comply with applicable legal obligations.</li>
+            </ul>
+            <p class="text-slate-600">
+                <strong>Legal Basis:</strong> Processing is based on Article 31 of the Swiss Federal Data Protection Act (nFADP) and Article 6(1)(f) of the EU General Data Protection Regulation (GDPR) for legitimate interests.
+            </p>
         </section>
 
-        <!-- 4 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">4. Data sharing</h2>
-          <p>We do not sell, rent, or trade your personal data. Data may be shared with the following service providers, acting as processors on our behalf:</p>
-          <div class="mt-3 space-y-2">
-            <p><strong class="text-white">GitHub, Inc.</strong> (San Francisco, CA, USA) — website hosting. GitHub is certified under the EU–US Data Privacy Framework.</p>
-            <p><strong class="text-white">Infomaniak Network SA</strong> (Geneva, Switzerland) — email hosting and domain registration. Data remains in Switzerland.</p>
-          </div>
-          <p class="mt-3">We do not transfer data to other third parties unless required by law.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Data Sharing</h2>
+            <p class="text-slate-600 mb-4">
+                Your data may be shared with the following service providers who assist us in operating the website:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                <li><strong>GitHub Inc. (San Francisco, USA):</strong> Provides website hosting via GitHub Pages.</li>
+                <li><strong>Infomaniak (Geneva, Switzerland):</strong> Provides email and additional technical services.</li>
+            </ul>
+            <p class="text-slate-600 mt-4">
+                We do not sell, rent, or otherwise transfer personal data to third parties for marketing purposes.
+            </p>
         </section>
 
-        <!-- 5 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">5. International data transfers</h2>
-          <p>Server log data processed by GitHub may be stored in the United States. GitHub participates in the EU–US Data Privacy Framework, providing an adequate level of protection as recognised by the Swiss Federal Data Protection and Information Commissioner (FDPIC). Email data is hosted by Infomaniak in Switzerland and does not leave Swiss jurisdiction.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">International Data Transfers</h2>
+            <p class="text-slate-600">
+                Some of our service providers are located outside Switzerland and the EU. For transfers to the United States, we rely on the EU-US Data Privacy Framework to provide appropriate safeguards and ensure your data is protected to standards comparable to those in the EU and Switzerland.
+            </p>
         </section>
 
-        <!-- 6 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">6. Data retention</h2>
-          <p>Contact form submissions and related correspondence are retained for up to 24 months after the last communication, then deleted. Server logs are managed and retained by GitHub according to their data retention policies.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Data Retention</h2>
+            <p class="text-slate-600">
+                We retain personal data provided through contact forms for up to 24 months from the date of collection, or as required by applicable law. Server logs maintained by our hosting providers are retained according to their standard retention policies. After the retention period, data is securely deleted or anonymized.
+            </p>
         </section>
 
-        <!-- 7 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">7. Your rights</h2>
-          <p>Under the nFADP and, where applicable, the GDPR, you have the right to:</p>
-          <div class="mt-3 space-y-1">
-            <p>— Request information about the personal data we hold about you</p>
-            <p>— Request correction of inaccurate data</p>
-            <p>— Request deletion of your data</p>
-            <p>— Object to or restrict processing</p>
-            <p>— Request data portability</p>
-            <p>— Withdraw consent at any time (without affecting the lawfulness of prior processing)</p>
-          </div>
-          <p class="mt-3">To exercise these rights, contact us at <a href="mailto:info@labionexus.ch" class="text-brand-400 hover:text-brand-300 transition-colors">info@labionexus.ch</a>. You also have the right to lodge a complaint with the FDPIC or your local supervisory authority.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Your Rights</h2>
+            <p class="text-slate-600 mb-4">
+                You have the following rights regarding your personal data:
+            </p>
+            <ul class="list-disc list-inside space-y-2 text-slate-600 mb-4">
+                <li><strong>Right of Access:</strong> You may request access to the personal data we hold about you.</li>
+                <li><strong>Right to Correction:</strong> You may request correction of inaccurate or incomplete data.</li>
+                <li><strong>Right to Deletion:</strong> You may request deletion of your data, subject to legal requirements.</li>
+                <li><strong>Right to Object:</strong> You may object to the processing of your data in certain circumstances.</li>
+                <li><strong>Right to Data Portability:</strong> You may request a copy of your data in a portable format.</li>
+                <li><strong>Right to Withdraw Consent:</strong> If we rely on your consent, you may withdraw it at any time.</li>
+            </ul>
+            <p class="text-slate-600">
+                To exercise any of these rights, please contact us at <a href="mailto:info@labionexus.ch" class="text-brand-600 hover:text-brand-700">info@labionexus.ch</a>.
+            </p>
         </section>
 
-        <!-- 8 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">8. Security</h2>
-          <p>We take appropriate technical and organisational measures to protect your data against unauthorised access, loss, or misuse. All communication with this website is encrypted via TLS (HTTPS).</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Security</h2>
+            <p class="text-slate-600">
+                All data transmission to and from our website is encrypted using TLS/HTTPS protocols. We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of internet transmission is completely secure, and we cannot guarantee absolute security.
+            </p>
         </section>
 
-        <!-- 9 -->
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">9. Changes to this policy</h2>
-          <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date. We encourage you to review this page periodically.</p>
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Changes to This Privacy Policy</h2>
+            <p class="text-slate-600 mb-4">
+                Lab BioNexus may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. Any updates will be posted on this page with a revised "Last updated" date.
+            </p>
+            <p class="text-slate-600">
+                <strong>Effective Date:</strong> March 2026
+            </p>
         </section>
+    </main>
 
-      </div>
-
-      <p class="mt-12 text-sm text-slate-500">Last updated: March 2026</p>
-
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/60 bg-slate-950 py-8">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-      <p>&copy; 2026 Lab BioNexus. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="/impressum.html" class="hover:text-white transition-colors">Impressum</a>
-        <a href="/privacy.html" class="text-slate-400 hover:text-white transition-colors">Privacy policy</a>
-        <a href="/terms.html" class="hover:text-white transition-colors">Terms of use</a>
-      </div>
-    </div>
-  </footer>
-
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 mt-20">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Legal Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/impressum.html" class="hover:text-white transition">Impressum</a></li>
+                        <li><a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="hover:text-white transition">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Lab BioNexus</h3>
+                    <p class="text-sm">Route des Combes 20<br>1726 Farvagny<br>Switzerland</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Contact</h3>
+                    <a href="mailto:info@labionexus.ch" class="hover:text-white transition">info@labionexus.ch</a>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 pt-8">
+                <p class="text-sm mb-2">&copy; 2026 Lab BioNexus. All rights reserved.</p>
+                <p class="text-sm text-slate-400">Built in Switzerland</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
