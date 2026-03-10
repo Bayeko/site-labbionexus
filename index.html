@@ -7,14 +7,22 @@
   <meta name="description" content="Lab BioNexus integrates lab instruments, LIMS and automation systems to create smarter, compliant, data-driven laboratories." />
   <meta name="theme-color" content="#0f172a" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='%230f172a'/%3E%3Cpath d='M26 86c24 0 24-44 48-44s24 44 48 44' stroke='%23a5b4fc' stroke-width='10' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='38' cy='42' r='8' fill='%23a5b4fc'/%3E%3Ccircle cx='86' cy='74' r='8' fill='%23a5b4fc'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
           colors: {
             brand: {
               50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
               500: '#6366f1',
               600: '#4f46e5',
               700: '#4338ca',
@@ -25,10 +33,9 @@
     }
   </script>
   <style>
-    /* Smooth scroll */
     html { scroll-behavior: smooth; }
-    /* Simple animated gradient ring for the logo */
-    .ring-animate { 
+
+    .ring-animate {
       box-shadow: 0 0 0 2px inset rgba(99,102,241,.2);
       animation: pulse 2.4s ease-in-out infinite;
     }
@@ -36,14 +43,60 @@
       0%, 100% { box-shadow: 0 0 0 2px inset rgba(99,102,241,.18); }
       50% { box-shadow: 0 0 0 2px inset rgba(99,102,241,.38); }
     }
+
+    /* Fade-in on scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px -8px rgba(99,102,241,.15);
+      border-color: rgba(99,102,241,.3);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .mobile-menu.open {
+      max-height: 300px;
+    }
+
+    /* Number counter animation placeholder */
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased">
-  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/70">
+<body class="bg-slate-950 text-slate-100 antialiased font-sans">
+
+  <!-- ============ HEADER ============ -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/80 border-b border-slate-900/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
-        <a href="#" class="flex items-center gap-3">
-          <div class="h-9 w-9 rounded-xl bg-slate-900 grid place-items-center ring-animate">
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="h-9 w-9 rounded-xl bg-slate-900 grid place-items-center ring-animate group-hover:scale-105 transition-transform">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/>
               <circle cx="7" cy="7" r="1.5"/>
@@ -52,61 +105,99 @@
           </div>
           <span class="font-semibold tracking-wide">Lab BioNexus</span>
         </a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-brand-500">About</a>
-          <a href="#solutions" class="hover:text-brand-500">Solutions</a>
-          <a href="#use-cases" class="hover:text-brand-500">Use cases</a>
-          <a href="#contact" class="hover:text-brand-500">Contact</a>
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#about" class="text-slate-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brand-500 after:transition-all hover:after:w-full">About</a>
+          <a href="#solutions" class="text-slate-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brand-500 after:transition-all hover:after:w-full">Solutions</a>
+          <a href="#use-cases" class="text-slate-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brand-500 after:transition-all hover:after:w-full">Use cases</a>
+          <a href="#contact" class="text-slate-300 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brand-500 after:transition-all hover:after:w-full">Contact</a>
         </nav>
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 px-4 py-2 text-sm font-medium">
-          <span>Let’s talk</span>
-        </a>
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 px-4 py-2 text-sm font-medium transition-colors shadow-lg shadow-brand-600/20 hover:shadow-brand-600/30">
+            <span>Let's talk</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+          <!-- Mobile menu button -->
+          <button id="menu-toggle" class="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors" aria-label="Toggle menu">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+            </svg>
+          </button>
+        </div>
       </div>
+      <!-- Mobile menu -->
+      <nav id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="py-4 space-y-1 border-t border-slate-800">
+          <a href="#about" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">About</a>
+          <a href="#solutions" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Solutions</a>
+          <a href="#use-cases" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Use cases</a>
+          <a href="#contact" class="block px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Contact</a>
+        </div>
+      </nav>
     </div>
   </header>
 
+  <!-- ============ HERO ============ -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(40%_30%_at_70%_10%,rgba(99,102,241,.35),transparent_60%),radial-gradient(40%_30%_at_20%_80%,rgba(14,165,233,.25),transparent_60%)]"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <p class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-slate-300">
-            <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span> Automation • Integration • Compliance
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M60%200H0v60%22%20fill%3D%22none%22%20stroke%3D%22rgba(148%2C163%2C184%2C0.04)%22%20stroke-width%3D%221%22%2F%3E%3C%2Fsvg%3E')]"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="fade-up">
+          <p class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-slate-400 bg-slate-900/60 rounded-full px-4 py-1.5 border border-slate-800">
+            <span class="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span> Automation &bull; Integration &bull; Compliance
           </p>
-          <h1 class="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
-            Connecting <span class="text-brand-500">science</span> and <span class="text-brand-500">data</span> for smarter labs.
+          <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+            Connecting <span class="gradient-text">science</span> and <span class="gradient-text">data</span> for smarter labs.
           </h1>
-          <p class="mt-6 text-slate-300 max-w-xl">
-            Lab BioNexus integrates lab instruments, LIMS and automation systems to create reproducible, compliant, and data‑driven workflows — from ÄKTA and Tecan to CE‑SDS analytics.
+          <p class="mt-6 text-lg text-slate-400 max-w-xl leading-relaxed">
+            Lab BioNexus integrates lab instruments, LIMS and automation systems to create reproducible, compliant, and data&#8209;driven workflows&nbsp;&mdash; from &Auml;KTA and Tecan to CE&#8209;SDS analytics.
           </p>
-          <div class="mt-8 flex items-center gap-3">
-            <a href="#contact" class="rounded-xl bg-brand-600 hover:bg-brand-700 px-5 py-3 font-medium">Discuss your project</a>
-            <a href="#solutions" class="rounded-xl border border-slate-800 hover:border-slate-700 px-5 py-3 font-medium">Explore solutions</a>
+          <div class="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 px-6 py-3.5 font-medium transition-all shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-0.5">
+              Discuss your project
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            <a href="#solutions" class="inline-flex items-center gap-2 rounded-xl border border-slate-700 hover:border-slate-500 px-6 py-3.5 font-medium transition-all hover:bg-slate-900">
+              Explore solutions
+            </a>
           </div>
         </div>
-        <div class="relative">
-          <div class="absolute -inset-6 bg-gradient-to-tr from-brand-600/10 to-cyan-500/10 blur-2xl rounded-3xl"></div>
-          <div class="relative rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
+        <div class="relative fade-up" style="transition-delay:.15s">
+          <div class="absolute -inset-8 bg-gradient-to-tr from-brand-600/10 to-cyan-500/10 blur-3xl rounded-3xl"></div>
+          <div class="relative rounded-3xl border border-slate-800 bg-slate-900/80 backdrop-blur-sm p-8 shadow-2xl">
             <div class="grid grid-cols-2 gap-4">
-              <div class="rounded-2xl border border-slate-800 p-4">
-                <p class="text-xs text-slate-400">Instruments</p>
-                <p class="mt-2 text-sm">ÄKTA • Tecan • CE‑SDS</p>
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5 card-hover">
+                <div class="h-8 w-8 rounded-lg bg-brand-600/10 grid place-items-center mb-3">
+                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+                </div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Instruments</p>
+                <p class="mt-1.5 text-sm font-medium">&Auml;KTA &bull; Tecan &bull; CE&#8209;SDS</p>
               </div>
-              <div class="rounded-2xl border border-slate-800 p-4">
-                <p class="text-xs text-slate-400">Systems</p>
-                <p class="mt-2 text-sm">LIMS • ELN • MES</p>
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5 card-hover">
+                <div class="h-8 w-8 rounded-lg bg-brand-600/10 grid place-items-center mb-3">
+                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+                </div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Systems</p>
+                <p class="mt-1.5 text-sm font-medium">LIMS &bull; ELN &bull; MES</p>
               </div>
-              <div class="rounded-2xl border border-slate-800 p-4">
-                <p class="text-xs text-slate-400">Compliance</p>
-                <p class="mt-2 text-sm">GxP • 21 CFR Part 11</p>
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5 card-hover">
+                <div class="h-8 w-8 rounded-lg bg-brand-600/10 grid place-items-center mb-3">
+                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                </div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Compliance</p>
+                <p class="mt-1.5 text-sm font-medium">GxP &bull; 21 CFR Part 11</p>
               </div>
-              <div class="rounded-2xl border border-slate-800 p-4">
-                <p class="text-xs text-slate-400">Outcomes</p>
-                <p class="mt-2 text-sm">Traceable, paperless, faster</p>
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5 card-hover">
+                <div class="h-8 w-8 rounded-lg bg-brand-600/10 grid place-items-center mb-3">
+                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                </div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Outcomes</p>
+                <p class="mt-1.5 text-sm font-medium">Traceable, paperless, faster</p>
               </div>
             </div>
-            <div class="mt-4 rounded-xl bg-slate-800/40 p-4 text-xs text-slate-300">
-              “From chromatography to analytics, we unify your lab data layer.”
+            <div class="mt-5 rounded-xl bg-gradient-to-r from-slate-800/60 to-slate-800/30 p-4 text-sm text-slate-300 italic border border-slate-800/50">
+              &ldquo;From chromatography to analytics, we unify your lab data layer.&rdquo;
             </div>
           </div>
         </div>
@@ -114,94 +205,195 @@
     </div>
   </section>
 
-  <section id="about" class="py-20 border-t border-slate-900">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="md:col-span-1">
-          <h2 class="text-2xl font-semibold">About</h2>
+  <!-- ============ TRUSTED BY / STATS ============ -->
+  <section class="border-t border-slate-900 bg-slate-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="fade-up">
+          <p class="text-3xl font-bold gradient-text stat-number">40%</p>
+          <p class="mt-1 text-sm text-slate-400">Faster reporting</p>
         </div>
-        <div class="md:col-span-2 space-y-4 text-slate-300">
-          <p><strong>Lab BioNexus</strong> is an independent initiative founded by a biotechnology engineer with hands‑on experience in microbial downstream purification and laboratory automation.</p>
-          <p>Our mission is to bridge the gap between experimental work and data intelligence by connecting instruments, automation platforms, and digital ecosystems (LIMS, ELN, MES).</p>
-          <p>We focus on simplicity, compliance, and interoperability — enabling labs to evolve into fully connected, data‑driven environments.</p>
+        <div class="fade-up" style="transition-delay:.1s">
+          <p class="text-3xl font-bold gradient-text stat-number">100%</p>
+          <p class="mt-1 text-sm text-slate-400">Data traceability</p>
+        </div>
+        <div class="fade-up" style="transition-delay:.2s">
+          <p class="text-3xl font-bold gradient-text stat-number">GxP</p>
+          <p class="mt-1 text-sm text-slate-400">Compliant workflows</p>
+        </div>
+        <div class="fade-up" style="transition-delay:.3s">
+          <p class="text-3xl font-bold gradient-text stat-number">24h</p>
+          <p class="mt-1 text-sm text-slate-400">Response time</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="solutions" class="py-20 border-t border-slate-900">
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="py-24 border-t border-slate-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-semibold">Solutions</h2>
-      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-brand-500">Instrument Integration</div>
-          <p class="mt-2 text-sm text-slate-300">Connect ÄKTA systems, Tecan liquid handlers, and CE‑SDS analyzers to unified digital workflows. Automate data capture and result processing.</p>
+      <div class="grid md:grid-cols-5 gap-12 items-start">
+        <div class="md:col-span-2 fade-up">
+          <p class="text-xs uppercase tracking-widest text-brand-500 font-medium">Who we are</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">About Lab&nbsp;BioNexus</h2>
+          <div class="mt-6 h-1 w-12 rounded-full bg-brand-600"></div>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-brand-500">Workflow Automation</div>
-          <p class="mt-2 text-sm text-slate-300">Reduce manual steps with scripted automation and scheduling. Improve reproducibility via API‑based integration between devices and systems.</p>
-        </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-brand-500">Regulatory Compliance</div>
-          <p class="mt-2 text-sm text-slate-300">Ensure 21 CFR Part 11 and GxP alignment with secure audit trails, controlled access, and validated data exchange workflows.</p>
-        </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-brand-500">Advanced Reporting</div>
-          <p class="mt-2 text-sm text-slate-300">Centralize process data into interactive dashboards for real‑time insights and faster decisions in R&amp;D and QA.</p>
+        <div class="md:col-span-3 space-y-5 fade-up" style="transition-delay:.1s">
+          <p class="text-slate-300 leading-relaxed text-lg">
+            <strong class="text-slate-100">Lab BioNexus</strong> is an independent initiative founded by a biotechnology engineer with hands&#8209;on experience in microbial downstream purification and laboratory automation.
+          </p>
+          <p class="text-slate-400 leading-relaxed">
+            Our mission is to bridge the gap between experimental work and data intelligence by connecting instruments, automation platforms, and digital ecosystems (LIMS, ELN, MES).
+          </p>
+          <p class="text-slate-400 leading-relaxed">
+            We focus on simplicity, compliance, and interoperability&nbsp;&mdash; enabling labs to evolve into fully connected, data&#8209;driven environments.
+          </p>
+          <div class="pt-4 flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-900 border border-slate-800 rounded-full px-3 py-1.5 text-slate-300">
+              <svg class="h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              Biotech expertise
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-900 border border-slate-800 rounded-full px-3 py-1.5 text-slate-300">
+              <svg class="h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              Lab automation
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-900 border border-slate-800 rounded-full px-3 py-1.5 text-slate-300">
+              <svg class="h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              GxP compliance
+            </span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-900 border border-slate-800 rounded-full px-3 py-1.5 text-slate-300">
+              <svg class="h-3.5 w-3.5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              Data integration
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="use-cases" class="py-20 border-t border-slate-900">
+  <!-- ============ SOLUTIONS ============ -->
+  <section id="solutions" class="relative py-24 border-t border-slate-900 overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(50%_40%_at_50%_0%,rgba(99,102,241,.08),transparent_70%)]"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto fade-up">
+        <p class="text-xs uppercase tracking-widest text-brand-500 font-medium">What we offer</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">End-to-end lab integration</h2>
+        <p class="mt-4 text-slate-400">From instrument connectivity to regulatory compliance, we deliver solutions that transform how your lab operates.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 card-hover fade-up">
+          <div class="h-11 w-11 rounded-xl bg-brand-600/10 grid place-items-center mb-5">
+            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-white">Instrument Integration</h3>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">Connect &Auml;KTA systems, Tecan liquid handlers, and CE&#8209;SDS analyzers to unified digital workflows.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 card-hover fade-up" style="transition-delay:.1s">
+          <div class="h-11 w-11 rounded-xl bg-brand-600/10 grid place-items-center mb-5">
+            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-white">Workflow Automation</h3>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">Reduce manual steps with scripted automation and scheduling. Improve reproducibility via API&#8209;based integration.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 card-hover fade-up" style="transition-delay:.2s">
+          <div class="h-11 w-11 rounded-xl bg-brand-600/10 grid place-items-center mb-5">
+            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-white">Regulatory Compliance</h3>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">Ensure 21 CFR Part 11 and GxP alignment with secure audit trails and validated data exchange.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 card-hover fade-up" style="transition-delay:.3s">
+          <div class="h-11 w-11 rounded-xl bg-brand-600/10 grid place-items-center mb-5">
+            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-white">Advanced Reporting</h3>
+          <p class="mt-2 text-sm text-slate-400 leading-relaxed">Centralize process data into interactive dashboards for real&#8209;time insights in R&amp;D and QA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USE CASES ============ -->
+  <section id="use-cases" class="py-24 border-t border-slate-900">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-semibold">Use cases</h2>
-      <div class="mt-10 grid md:grid-cols-3 gap-6">
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-sm text-brand-500">Reporting Time</div>
-          <p class="mt-2 text-sm text-slate-300">Reduce reporting time by up to 40% with automated capture and pre‑formatted outputs.</p>
+      <div class="text-center max-w-2xl mx-auto fade-up">
+        <p class="text-xs uppercase tracking-widest text-brand-500 font-medium">Real impact</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">Measurable results for your lab</h2>
+        <p class="mt-4 text-slate-400">See how our integration solutions deliver tangible improvements across lab operations.</p>
+      </div>
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <div class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-8 card-hover fade-up">
+          <div class="h-12 w-12 rounded-xl bg-brand-600/10 grid place-items-center mb-6 group-hover:bg-brand-600/20 transition-colors">
+            <svg class="h-6 w-6 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="text-2xl font-bold text-white">40% faster</p>
+          <h3 class="mt-1 font-medium text-brand-400">Reporting Time</h3>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">Reduce reporting time with automated capture and pre&#8209;formatted outputs. No more manual copy&#8209;paste between systems.</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-sm text-brand-500">Data Integrity</div>
-          <p class="mt-2 text-sm text-slate-300">Eliminate manual transfer errors and ensure traceability with audit trails.</p>
+        <div class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-8 card-hover fade-up" style="transition-delay:.1s">
+          <div class="h-12 w-12 rounded-xl bg-brand-600/10 grid place-items-center mb-6 group-hover:bg-brand-600/20 transition-colors">
+            <svg class="h-6 w-6 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="text-2xl font-bold text-white">100% traceable</p>
+          <h3 class="mt-1 font-medium text-brand-400">Data Integrity</h3>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">Eliminate manual transfer errors and ensure full traceability with automated audit trails at every step.</p>
         </div>
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-          <div class="text-sm text-brand-500">Interoperability</div>
-          <p class="mt-2 text-sm text-slate-300">Integrate multiple lab systems under one digital layer — LIMS, ELN, MES.</p>
+        <div class="group rounded-2xl border border-slate-800 bg-slate-900/60 p-8 card-hover fade-up" style="transition-delay:.2s">
+          <div class="h-12 w-12 rounded-xl bg-brand-600/10 grid place-items-center mb-6 group-hover:bg-brand-600/20 transition-colors">
+            <svg class="h-6 w-6 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+            </svg>
+          </div>
+          <p class="text-2xl font-bold text-white">One platform</p>
+          <h3 class="mt-1 font-medium text-brand-400">Interoperability</h3>
+          <p class="mt-3 text-sm text-slate-400 leading-relaxed">Integrate multiple lab systems under one unified digital layer&nbsp;&mdash; LIMS, ELN, MES seamlessly connected.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ============ CONTACT ============ -->
   <section id="contact" class="relative py-24 border-t border-slate-900 overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(40%_40%_at_50%_60%,rgba(99,102,241,.12),transparent_70%)]"></div>
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto fade-up">
         <p class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-brand-500">
           <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span> Get in touch
         </p>
-        <h2 class="mt-4 text-3xl sm:text-4xl font-semibold">Let’s build your connected lab</h2>
-        <p class="mt-4 text-slate-300">Ready to modernize your lab? Tell us about your project and we’ll get back to you within 24 hours.</p>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-bold tracking-tight">Let's build your connected lab</h2>
+        <p class="mt-4 text-slate-400">Ready to modernize your lab? Tell us about your project and we'll get back to you within 24 hours.</p>
       </div>
 
       <div class="mt-14 grid lg:grid-cols-5 gap-10">
         <!-- Contact info sidebar -->
-        <div class="lg:col-span-2 space-y-8">
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-6">
+        <div class="lg:col-span-2 space-y-6 fade-up">
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 space-y-6">
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 h-10 w-10 rounded-xl bg-brand-600/10 grid place-items-center">
-                <svg class="h-5 w-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                 </svg>
               </div>
               <div>
                 <p class="text-sm font-medium text-slate-200">Email us</p>
-                <a href="mailto:messadene.amir@gmail.com" class="mt-1 text-sm text-brand-500 hover:text-brand-400 transition-colors">messadene.amir@gmail.com</a>
+                <a href="mailto:messadene.amir@gmail.com" class="mt-1 text-sm text-brand-400 hover:text-brand-300 transition-colors">messadene.amir@gmail.com</a>
               </div>
             </div>
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 h-10 w-10 rounded-xl bg-brand-600/10 grid place-items-center">
-                <svg class="h-5 w-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
                 </svg>
@@ -213,7 +405,7 @@
             </div>
             <div class="flex items-start gap-4">
               <div class="flex-shrink-0 h-10 w-10 rounded-xl bg-brand-600/10 grid place-items-center">
-                <svg class="h-5 w-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
@@ -226,8 +418,8 @@
         </div>
 
         <!-- Contact form -->
-        <div class="lg:col-span-3">
-          <form name="contact" method="POST" data-netlify="true" class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 space-y-5">
+        <div class="lg:col-span-3 fade-up" style="transition-delay:.1s">
+          <form name="contact" method="POST" data-netlify="true" class="rounded-2xl border border-slate-800 bg-slate-900/60 backdrop-blur-sm p-6 sm:p-8 space-y-5">
             <input type="hidden" name="form-name" value="contact">
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
@@ -254,7 +446,10 @@
               <textarea name="message" rows="5" required placeholder="Describe your project, instruments, or integration needs..." class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-2.5 text-sm outline-none placeholder:text-slate-600 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all resize-y"></textarea>
             </div>
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
-              <button class="rounded-xl bg-brand-600 hover:bg-brand-700 px-6 py-3 font-medium text-sm transition-colors shadow-lg shadow-brand-600/20" type="submit">Send message</button>
+              <button class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 px-6 py-3 font-medium text-sm transition-all shadow-lg shadow-brand-600/20 hover:shadow-brand-600/40 hover:-translate-y-0.5" type="submit">
+                Send message
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+              </button>
               <p class="text-xs text-slate-500">We respect your privacy. No spam, ever.</p>
             </div>
           </form>
@@ -263,17 +458,86 @@
     </div>
   </section>
 
-  <footer class="py-10 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p>© <span id="year"></span> Lab BioNexus. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a href="#about" class="hover:text-slate-200">About</a>
-        <a href="#solutions" class="hover:text-slate-200">Solutions</a>
-        <a href="#contact" class="hover:text-slate-200">Contact</a>
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-slate-900 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-12 grid md:grid-cols-3 gap-8">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="flex items-center gap-3">
+            <div class="h-9 w-9 rounded-xl bg-slate-900 grid place-items-center ring-animate">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/>
+                <circle cx="7" cy="7" r="1.5"/>
+                <circle cx="16" cy="14" r="1.5"/>
+              </svg>
+            </div>
+            <span class="font-semibold tracking-wide">Lab BioNexus</span>
+          </a>
+          <p class="mt-4 text-sm text-slate-500 max-w-xs leading-relaxed">Connecting science and data for smarter, compliant, data-driven laboratories.</p>
+        </div>
+        <!-- Navigation -->
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-slate-400">Navigate</h4>
+            <ul class="mt-4 space-y-2.5">
+              <li><a href="#about" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">About</a></li>
+              <li><a href="#solutions" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Solutions</a></li>
+              <li><a href="#use-cases" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Use cases</a></li>
+              <li><a href="#contact" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-slate-400">Solutions</h4>
+            <ul class="mt-4 space-y-2.5">
+              <li><a href="#solutions" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Integration</a></li>
+              <li><a href="#solutions" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Automation</a></li>
+              <li><a href="#solutions" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Compliance</a></li>
+              <li><a href="#solutions" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Reporting</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Contact shortcut -->
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-widest text-slate-400">Get in touch</h4>
+          <p class="mt-4 text-sm text-slate-500">Have a project in mind?</p>
+          <a href="#contact" class="mt-3 inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors">
+            Start a conversation
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+          <p class="mt-4 text-sm text-slate-500">
+            <a href="mailto:messadene.amir@gmail.com" class="hover:text-slate-300 transition-colors">messadene.amir@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="py-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-600">&copy; <span id="year"></span> Lab BioNexus. All rights reserved.</p>
+        <p class="text-xs text-slate-600">Built in Switzerland</p>
       </div>
     </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    // Close mobile menu on link click
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
