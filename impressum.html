@@ -1,119 +1,152 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Impressum — Lab BioNexus</title>
-  <meta name="description" content="Legal information and site operator details for Lab BioNexus.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            brand: {
-              50: '#eef2ff', 100: '#e0e7ff', 400: '#818cf8',
-              500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Lab BioNexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca', 800:'#3730a3', 900:'#312e81' },
+                        accent: { 50:'#ecfdf5', 100:'#d1fae5', 200:'#a7f3d0', 300:'#6ee7b7', 400:'#34d399', 500:'#10b981', 600:'#059669' },
+                    }
+                }
             }
-          }
         }
-      }
-    }
-  </script>
+    </script>
 </head>
-<body class="bg-slate-950 text-slate-300 font-sans antialiased">
-
-  <!-- Nav -->
-  <nav class="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-3">
-        <div class="h-9 w-9 rounded-xl bg-slate-900 grid place-items-center">
-          <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.3 24.3 0 0 1 4.5 0m0 0v5.714a2.25 2.25 0 0 0 .659 1.591L19 14.5m-4.75-11.396c.251.023.501.05.75.082M5 14.5l-1.456 1.456a2.25 2.25 0 0 0-.084 3.098l.064.068a2.25 2.25 0 0 0 3.178-.062L9 16.75m-4-2.25 4 2.25m0 0 2.25 3m4.5-5.25 1.456 1.456a2.25 2.25 0 0 1 .084 3.098l-.064.068a2.25 2.25 0 0 1-3.178-.062L15 16.75m4-2.25-4 2.25m0 0-2.25 3"/>
-          </svg>
+<body class="bg-white font-sans text-slate-700">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center text-white font-bold text-sm">Î»</div>
+                <span class="text-lg font-semibold text-slate-900">Lab BioNexus</span>
+            </div>
+            <a href="/" class="text-sm text-brand-600 hover:text-brand-700 font-medium">â Back to homepage</a>
         </div>
-        <span class="text-white font-semibold text-lg tracking-tight">Lab BioNexus</span>
-      </a>
-      <a href="/" class="text-sm text-slate-400 hover:text-white transition-colors">&larr; Back to homepage</a>
-    </div>
-  </nav>
+    </header>
 
-  <!-- Content -->
-  <main class="pt-32 pb-20">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-bold text-slate-900 mb-2">Impressum</h1>
+        <p class="text-sm text-slate-500 mb-12">Legal disclosure - Last updated: March 2026</p>
 
-      <h1 class="text-3xl font-bold text-white mb-2">Impressum</h1>
-      <p class="text-sm text-slate-500 mb-10">Legal disclosure pursuant to Swiss Federal Act against Unfair Competition (UWG), Art.&nbsp;3 lit.&nbsp;s</p>
-
-      <div class="space-y-8 text-slate-300 leading-relaxed">
-
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Site operator</h2>
-          <p>
-            Amir Messadene<br>
-            operating as <strong class="text-white">Lab BioNexus</strong><br>
-            Route des Combes 20<br>
-            1726 Farvagny<br>
-            Switzerland
-          </p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Site Operator</h2>
+            <p class="text-slate-600 mb-3">
+                <strong>Amir Messadene</strong><br>
+                Operating as Lab BioNexus
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Contact</h2>
-          <p>
-            Email: <a href="mailto:info@labionexus.ch" class="text-brand-400 hover:text-brand-300 transition-colors">info@labionexus.ch</a><br>
-            Website: <a href="https://www.labionexus.ch" class="text-brand-400 hover:text-brand-300 transition-colors">www.labionexus.ch</a>
-          </p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Contact Information</h2>
+            <p class="text-slate-600 mb-2">
+                <strong>Address:</strong><br>
+                Route des Combes 20<br>
+                1726 Farvagny<br>
+                Switzerland
+            </p>
+            <p class="text-slate-600">
+                <strong>Email:</strong> <a href="mailto:info@labionexus.ch" class="text-brand-600 hover:text-brand-700">info@labionexus.ch</a>
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Responsible person</h2>
-          <p>Amir Messadene</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Responsible Person</h2>
+            <p class="text-slate-600">
+                <strong>Amir Messadene</strong><br>
+                Responsible for content and operations of Lab BioNexus
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Company registration</h2>
-          <p>Lab BioNexus is currently operated as an individual initiative. Formal company registration (Sàrl) is in preparation. This page will be updated with the commercial register number (CHE/IDE) once registration is complete.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Company Registration</h2>
+            <p class="text-slate-600">
+                <strong>Legal Form:</strong> SÃ rl in preparation<br>
+                <strong>Jurisdiction:</strong> Canton of Fribourg, Switzerland<br>
+                <strong>CHE/IDE:</strong> To be added upon official registration
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Hosting</h2>
-          <p>This website is hosted on GitHub Pages (GitHub, Inc., San Francisco, CA, USA).</p>
-          <p class="mt-2">Domain registration and email services are provided by Infomaniak Network SA, Rue Eugène-Marziano 25, 1227 Geneva, Switzerland.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Hosting and Technical Services</h2>
+            <p class="text-slate-600 mb-3">
+                <strong>Website Hosting:</strong><br>
+                GitHub Pages (GitHub Inc., San Francisco, USA)
+            </p>
+            <p class="text-slate-600">
+                <strong>Email and Additional Services:</strong><br>
+                Infomaniak (Geneva, Switzerland)
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Intellectual property</h2>
-          <p>All content on this website — including text, graphics, logos, and software descriptions — is the property of Amir Messadene / Lab BioNexus and is protected by applicable copyright laws. Reproduction or use without written consent is prohibited.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Intellectual Property</h2>
+            <p class="text-slate-600">
+                All content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Lab BioNexus or its content suppliers and is protected by Swiss and international copyright laws. Unauthorized reproduction or use of any content is prohibited without express written permission from Lab BioNexus.
+            </p>
         </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-white mb-3">Disclaimer</h2>
-          <p>The information on this website is provided for general informational purposes. While we strive for accuracy, we make no warranties regarding the completeness, reliability, or suitability of the content. Liability for damages arising from the use of this website is excluded to the extent permitted by Swiss law.</p>
-          <p class="mt-2">External links are provided for convenience. We have no control over the content of linked third-party websites and accept no responsibility for them.</p>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Disclaimer</h2>
+            <p class="text-slate-600 mb-4">
+                The information provided on this website is for informational purposes only and does not constitute professional advice. Lab BioNexus makes no warranty regarding the accuracy, completeness, or timeliness of the information provided. Users access and use this website at their own risk.
+            </p>
+            <p class="text-slate-600">
+                Lab BioNexus is not liable for any damages, including but not limited to loss of profits, data, or business interruption, arising from the use of or inability to use this website or its content.
+            </p>
         </section>
 
-      </div>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Legal Basis</h2>
+            <p class="text-slate-600">
+                This impressum is provided in compliance with Article 3, Section s of the Swiss Unfair Competition Act (UWG).
+            </p>
+        </section>
 
-      <p class="mt-12 text-sm text-slate-500">Last updated: March 2026</p>
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Effective Date</h2>
+            <p class="text-slate-600">
+                This impressum is effective as of March 2026. Lab BioNexus reserves the right to update this information at any time.
+            </p>
+        </section>
+    </main>
 
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/60 bg-slate-950 py-8">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-      <p>&copy; 2026 Lab BioNexus. All rights reserved.</p>
-      <div class="flex gap-6">
-        <a href="/impressum.html" class="text-slate-400 hover:text-white transition-colors">Impressum</a>
-        <a href="/privacy.html" class="hover:text-white transition-colors">Privacy policy</a>
-        <a href="/terms.html" class="hover:text-white transition-colors">Terms of use</a>
-      </div>
-    </div>
-  </footer>
-
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 mt-20">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Legal Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/impressum.html" class="hover:text-white transition">Impressum</a></li>
+                        <li><a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="hover:text-white transition">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Lab BioNexus</h3>
+                    <p class="text-sm">Route des Combes 20<br>1726 Farvagny<br>Switzerland</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white mb-4">Contact</h3>
+                    <a href="mailto:info@labionexus.ch" class="hover:text-white transition">info@labionexus.ch</a>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 pt-8">
+                <p class="text-sm mb-2">&copy; 2026 Lab BioNexus. All rights reserved.</p>
+                <p class="text-sm text-slate-400">Built in Switzerland</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
