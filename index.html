@@ -21,32 +21,11 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
           colors: {
-            surface: {
-              0: '#0a0a0f',
-              1: '#0f0f16',
-              2: '#15151e',
-              3: '#1a1a26',
-              4: '#22222f',
-            },
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              200: '#c7d2fe',
-              300: '#a5b4fc',
-              400: '#818cf8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            },
-            line: {
-              DEFAULT: 'rgba(255,255,255,0.06)',
-              hover: 'rgba(255,255,255,0.12)',
-              accent: 'rgba(99,102,241,0.25)',
-            }
+            surface: { 0: '#0a0a0f', 1: '#0f0f16', 2: '#15151e', 3: '#1a1a26', 4: '#22222f' },
+            brand: { 50:'#eef2ff', 100:'#e0e7ff', 200:'#c7d2fe', 300:'#a5b4fc', 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca' },
+            line: { DEFAULT: 'rgba(255,255,255,0.06)', hover: 'rgba(255,255,255,0.12)', accent: 'rgba(99,102,241,0.25)' }
           }
         }
       }
@@ -56,10 +35,17 @@
     html { scroll-behavior: smooth; }
     body { background: #0a0a0f; }
 
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    }
+
     #scroll-progress {
       position: fixed; top: 0; left: 0; height: 1px; z-index: 100;
       background: #818cf8; width: 0%; transition: width .1s linear;
     }
+
+    .header-scrolled { background: rgba(10,10,15,.95) !important; border-color: rgba(255,255,255,.08) !important; }
 
     .reveal {
       opacity: 0; transform: translateY(24px);
@@ -77,10 +63,7 @@
     }
     .reveal-right.visible { opacity: 1; transform: none; }
 
-    .stagger > * {
-      opacity: 0; transform: translateY(12px);
-      transition: opacity .4s ease, transform .4s ease;
-    }
+    .stagger > * { opacity: 0; transform: translateY(12px); transition: opacity .4s ease, transform .4s ease; }
     .stagger.visible > *:nth-child(1) { transition-delay: .05s; opacity: 1; transform: none; }
     .stagger.visible > *:nth-child(2) { transition-delay: .1s; opacity: 1; transform: none; }
     .stagger.visible > *:nth-child(3) { transition-delay: .15s; opacity: 1; transform: none; }
@@ -88,24 +71,24 @@
     .stagger.visible > *:nth-child(5) { transition-delay: .25s; opacity: 1; transform: none; }
     .stagger.visible > *:nth-child(6) { transition-delay: .3s; opacity: 1; transform: none; }
 
-    .accent-text {
-      color: #818cf8;
-    }
+    .accent-text { color: #818cf8; }
 
     .card {
+      position: relative;
       background: rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 12px;
-      transition: border-color .25s ease, background .25s ease;
+      transition: border-color .3s ease, background .3s ease;
     }
-    .card:hover {
-      border-color: rgba(99,102,241,0.3);
-      background: rgba(255,255,255,0.04);
+    .card::before {
+      content: ''; position: absolute; inset: -1px; border-radius: inherit;
+      background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(99,102,241,.12), transparent 40%);
+      opacity: 0; transition: opacity .3s ease; z-index: -1;
     }
+    .card:hover { border-color: rgba(99,102,241,0.3); background: rgba(255,255,255,0.035); }
+    .card:hover::before { opacity: 1; }
 
-    .line-grow {
-      width: 0; transition: width .8s cubic-bezier(.16,1,.3,1);
-    }
+    .line-grow { width: 0; transition: width .8s cubic-bezier(.16,1,.3,1); }
     .line-grow.visible { width: 48px; }
 
     .mobile-menu { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
@@ -113,46 +96,35 @@
 
     .stat-number { font-variant-numeric: tabular-nums; }
 
-    .nav-link {
-      position: relative; color: rgba(255,255,255,.5);
-      transition: color .2s ease;
-    }
+    .nav-link { position: relative; color: rgba(255,255,255,.5); transition: color .2s ease; }
     .nav-link:hover { color: rgba(255,255,255,.9); }
     .nav-link::after {
       content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 0; height: 1px; background: #818cf8;
-      transition: width .2s ease;
+      width: 0; height: 1px; background: #818cf8; transition: width .2s ease;
     }
     .nav-link:hover::after { width: 100%; }
 
     .input-field {
-      width: 100%; border-radius: 8px; padding: 10px 16px;
-      font-size: 14px; outline: none;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #e2e8f0;
+      width: 100%; border-radius: 8px; padding: 10px 16px; font-size: 14px; outline: none;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #e2e8f0;
       transition: border-color .2s ease, box-shadow .2s ease;
     }
     .input-field::placeholder { color: rgba(255,255,255,0.2); }
-    .input-field:focus {
-      border-color: rgba(99,102,241,0.5);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
-    }
+    .input-field:focus { border-color: rgba(99,102,241,0.5); box-shadow: 0 0 0 3px rgba(99,102,241,0.08); }
 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 8px;
-      font-weight: 500; font-size: 14px;
-      background: #4f46e5; color: white;
-      transition: background .2s ease, transform .15s ease;
+      padding: 12px 24px; border-radius: 8px; font-weight: 500; font-size: 14px;
+      background: #4f46e5; color: white; position: relative;
+      transition: background .2s ease, transform .15s ease, box-shadow .3s ease;
+      box-shadow: 0 0 20px rgba(79,70,229,.15);
     }
-    .btn-primary:hover { background: #4338ca; transform: translateY(-1px); }
+    .btn-primary:hover { background: #4338ca; transform: translateY(-1px); box-shadow: 0 0 30px rgba(79,70,229,.35), 0 8px 20px rgba(79,70,229,.2); }
     .btn-primary:active { transform: translateY(0); }
 
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 8px;
-      font-weight: 500; font-size: 14px;
+      padding: 12px 24px; border-radius: 8px; font-weight: 500; font-size: 14px;
       background: transparent; color: rgba(255,255,255,.8);
       border: 1px solid rgba(255,255,255,0.1);
       transition: border-color .2s ease, color .2s ease, transform .15s ease;
@@ -166,26 +138,68 @@
     }
 
     .icon-box {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: grid; place-items: center;
-      background: rgba(99,102,241,0.08);
-      border: 1px solid rgba(99,102,241,0.12);
-      flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
+      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.12); flex-shrink: 0;
     }
     .icon-box-sm {
-      width: 32px; height: 32px; border-radius: 8px;
-      display: grid; place-items: center;
-      background: rgba(99,102,241,0.08);
-      flex-shrink: 0;
+      width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center;
+      background: rgba(99,102,241,0.08); flex-shrink: 0;
     }
 
     .tag {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 500;
-      padding: 4px 12px; border-radius: 6px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: rgba(255,255,255,.6);
+      font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 6px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,.6);
+    }
+
+    /* ── Hero flow diagram ── */
+    .flow-container {
+      position: relative; border-radius: 16px; padding: 2px;
+      background: conic-gradient(from var(--border-angle, 0deg), rgba(99,102,241,.05), rgba(99,102,241,.3), rgba(129,140,248,.5), rgba(99,102,241,.3), rgba(99,102,241,.05));
+      animation: border-rotate 6s linear infinite;
+    }
+    @keyframes border-rotate { to { --border-angle: 360deg; } }
+    @property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+    .flow-inner {
+      background: #0f0f16; border-radius: 14px; padding: 32px 24px;
+    }
+
+    .flow-node {
+      display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+      border-radius: 8px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7);
+      transition: border-color .2s, background .2s;
+    }
+    .flow-node:hover { border-color: rgba(99,102,241,.3); background: rgba(99,102,241,.06); }
+    .flow-node .dot { width: 6px; height: 6px; border-radius: 50%; background: #818cf8; flex-shrink: 0; }
+
+    .flow-center {
+      display: grid; place-items: center; width: 72px; height: 72px;
+      border-radius: 16px; background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.2);
+      margin: 0 auto;
+    }
+
+    .flow-line {
+      height: 1px; flex: 1; min-width: 16px;
+      background: repeating-linear-gradient(90deg, rgba(99,102,241,.3) 0, rgba(99,102,241,.3) 4px, transparent 4px, transparent 8px);
+      background-size: 200% 100%;
+      animation: dash-flow 1.5s linear infinite;
+    }
+    @keyframes dash-flow { to { background-position: -16px 0; } }
+
+    .flow-line-v {
+      width: 1px; height: 12px; margin: 0 auto;
+      background: repeating-linear-gradient(180deg, rgba(99,102,241,.3) 0, rgba(99,102,241,.3) 4px, transparent 4px, transparent 8px);
+      background-size: 100% 200%;
+      animation: dash-flow-v 1.5s linear infinite;
+    }
+    @keyframes dash-flow-v { to { background-position: 0 -16px; } }
+
+    /* ── Geometric accents ── */
+    .geo-circle {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      border: 1px solid rgba(99,102,241,.08);
     }
   </style>
 </head>
@@ -193,11 +207,11 @@
   <div id="scroll-progress"></div>
 
   <!-- ============ HEADER ============ -->
-  <header class="sticky top-0 z-50 backdrop-blur-2xl" style="background: rgba(10,10,15,.8); border-bottom: 1px solid rgba(255,255,255,.06);">
+  <header id="site-header" class="sticky top-0 z-50 backdrop-blur-2xl transition-all duration-300" style="background: rgba(10,10,15,.8); border-bottom: 1px solid rgba(255,255,255,.04);">
     <div class="max-w-6xl mx-auto px-6 lg:px-8">
       <div class="flex h-[72px] items-center justify-between">
         <a href="#" class="flex items-center gap-3 group">
-          <div class="h-10 w-10 rounded-xl bg-surface-2 grid place-items-center border border-line group-hover:border-line-accent transition-colors">
+          <div class="h-10 w-10 rounded-xl bg-surface-2 grid place-items-center border border-line group-hover:border-line-accent transition-colors duration-300">
             <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/>
               <circle cx="7" cy="7" r="1.5"/>
@@ -218,9 +232,7 @@
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
           </a>
           <button id="menu-toggle" class="md:hidden p-2 rounded-lg hover:bg-surface-2 transition-colors" aria-label="Toggle menu">
-            <svg class="h-5 w-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
-            </svg>
+            <svg class="h-5 w-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
           </button>
         </div>
       </div>
@@ -238,6 +250,8 @@
   <!-- ============ HERO ============ -->
   <section class="relative overflow-hidden" id="hero">
     <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,.06) 0%, transparent 70%);"></div>
+    <div class="geo-circle" style="width:400px;height:400px;right:-100px;top:-100px;opacity:.5"></div>
+    <div class="geo-circle" style="width:200px;height:200px;left:10%;bottom:20%;opacity:.3"></div>
     <div class="relative max-w-6xl mx-auto px-6 lg:px-8 pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pt-40 lg:pb-32">
       <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
         <div class="reveal">
@@ -259,29 +273,54 @@
             <a href="#solutions" class="btn-secondary">Explore solutions</a>
           </div>
         </div>
+
+        <!-- Flow diagram -->
         <div class="reveal" style="transition-delay:.15s">
-          <div class="card p-6 sm:p-8">
-            <div class="grid grid-cols-3 gap-3">
-              <div class="rounded-lg bg-surface-1 border border-line p-4">
-                <div class="icon-box-sm mb-3">
-                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          <div class="flow-container">
+            <div class="flow-inner">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="flex-1 space-y-2">
+                  <div class="flow-node"><span class="dot"></span>HPLC</div>
+                  <div class="flow-node"><span class="dot"></span>pH-meters</div>
+                  <div class="flow-node"><span class="dot"></span>Balances</div>
                 </div>
-                <p class="text-[10px] text-white/30 uppercase tracking-wider font-medium">Instruments</p>
-                <p class="mt-1.5 text-[13px] font-medium text-white/70 leading-snug">HPLC &bull; Balances &bull; pH&nbsp;meters &bull; Spectrometers &bull; TOC &bull; Microbiology</p>
+                <div class="flex flex-col items-center gap-0">
+                  <div class="flow-line-v"></div>
+                  <div class="flow-line-v"></div>
+                  <div class="flow-line-v"></div>
+                </div>
               </div>
-              <div class="rounded-lg bg-surface-1 border border-line p-4">
-                <div class="icon-box-sm mb-3">
-                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z"/></svg>
+
+              <div class="flex items-center gap-4 my-5">
+                <div class="flow-line"></div>
+                <div class="flow-center">
+                  <svg viewBox="0 0 24 24" class="h-7 w-7 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/>
+                    <circle cx="7" cy="7" r="1.5"/>
+                    <circle cx="16" cy="14" r="1.5"/>
+                  </svg>
                 </div>
-                <p class="text-[10px] text-white/30 uppercase tracking-wider font-medium">Systems</p>
-                <p class="mt-1.5 text-[13px] font-medium text-white/70 leading-snug">LIMS &bull; ELN &bull; MES</p>
+                <div class="flow-line"></div>
               </div>
-              <div class="rounded-lg bg-surface-1 border border-line p-4">
-                <div class="icon-box-sm mb-3">
-                  <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+
+              <div class="flex items-center gap-3 mt-4">
+                <div class="flex flex-col items-center gap-0">
+                  <div class="flow-line-v"></div>
+                  <div class="flow-line-v"></div>
                 </div>
-                <p class="text-[10px] text-white/30 uppercase tracking-wider font-medium">Compliance</p>
-                <p class="mt-1.5 text-[13px] font-medium text-white/70 leading-snug">EU GMP Annex 11 &bull; 21 CFR Part 11 &bull; GAMP5 &bull; ALCOA+</p>
+                <div class="flex-1 space-y-2">
+                  <div class="flow-node"><span class="dot" style="background:#34d399"></span>LIMS</div>
+                  <div class="flow-node"><span class="dot" style="background:#34d399"></span>ELN</div>
+                  <div class="flow-node"><span class="dot" style="background:#34d399"></span>MES</div>
+                </div>
+              </div>
+
+              <div class="mt-5 pt-4" style="border-top:1px solid rgba(255,255,255,.04)">
+                <div class="flex items-center justify-between text-[11px] text-white/25 uppercase tracking-widest font-medium">
+                  <span>Instruments</span>
+                  <span>Labionexus</span>
+                  <span>Systems</span>
+                </div>
               </div>
             </div>
           </div>
@@ -296,19 +335,19 @@
     <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div class="reveal">
-          <p class="text-2xl font-semibold text-white">Faster</p>
+          <p class="text-2xl font-semibold text-white tracking-tight">Faster</p>
           <p class="mt-1 text-[13px] text-white/35 font-light">Reporting cycles</p>
         </div>
         <div class="reveal" style="transition-delay:.08s">
-          <p class="text-2xl font-semibold text-white">Traceable</p>
+          <p class="text-2xl font-semibold text-white tracking-tight">Traceable</p>
           <p class="mt-1 text-[13px] text-white/35 font-light">End-to-end data integrity</p>
         </div>
         <div class="reveal" style="transition-delay:.16s">
-          <p class="text-2xl font-semibold text-white">GAMP5</p>
+          <p class="text-2xl font-semibold text-white tracking-tight">GAMP5</p>
           <p class="mt-1 text-[13px] text-white/35 font-light">Cat 4 validated</p>
         </div>
         <div class="reveal" style="transition-delay:.24s">
-          <p class="text-2xl font-semibold text-white stat-number">24h</p>
+          <p class="text-2xl font-semibold text-white tracking-tight stat-number">24h</p>
           <p class="mt-1 text-[13px] text-white/35 font-light">Response time</p>
         </div>
       </div>
@@ -317,27 +356,19 @@
     <div class="max-w-5xl mx-auto px-6 lg:px-8 py-12">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 stagger">
         <div class="flex flex-col items-center gap-3 text-center">
-          <div class="icon-box-sm">
-            <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/></svg>
-          </div>
+          <div class="icon-box-sm"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342"/></svg></div>
           <p class="text-[13px] text-white/50 font-medium">Ex&#8209;Lonza, ex&#8209;Roche engineer</p>
         </div>
         <div class="flex flex-col items-center gap-3 text-center">
-          <div class="icon-box-sm">
-            <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-          </div>
+          <div class="icon-box-sm"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
           <p class="text-[13px] text-white/50 font-medium">GAMP 5 Cat 4 Configured Product</p>
         </div>
         <div class="flex flex-col items-center gap-3 text-center">
-          <div class="icon-box-sm">
-            <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
-          </div>
+          <div class="icon-box-sm"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg></div>
           <p class="text-[13px] text-white/50 font-medium">Co&#8209;delivered with certified CSV partners</p>
         </div>
         <div class="flex flex-col items-center gap-3 text-center">
-          <div class="icon-box-sm">
-            <svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-          </div>
+          <div class="icon-box-sm"><svg class="h-4 w-4 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
           <p class="text-[13px] text-white/50 font-medium">Built in Switzerland</p>
         </div>
       </div>
@@ -345,8 +376,9 @@
   </section>
 
   <!-- ============ ABOUT ============ -->
-  <section id="about">
+  <section id="about" class="relative">
     <div class="section-divider"></div>
+    <div class="geo-circle" style="width:300px;height:300px;right:-80px;top:40%;opacity:.3"></div>
     <div class="max-w-5xl mx-auto px-6 lg:px-8 py-28">
       <div class="grid md:grid-cols-5 gap-16 items-start">
         <div class="md:col-span-2 reveal-left">
@@ -387,23 +419,17 @@
       </div>
       <div class="mt-16 grid md:grid-cols-2 gap-4">
         <div class="card p-6 reveal">
-          <div class="icon-box mb-5">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
-          </div>
+          <div class="icon-box mb-5"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg></div>
           <h3 class="font-semibold text-white text-[15px]">Instrument Integration</h3>
           <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">HPLC (Empower, ChemStation), pH&#8209;meters, balances (Mettler&nbsp;Toledo, Sartorius), TOC, osmometers, Solo&nbsp;VPE, Raman, FTIR, UV/Vis, NIR, Endoscan&#8209;V, and climate sensors.</p>
         </div>
         <div class="card p-6 reveal" style="transition-delay:.08s">
-          <div class="icon-box mb-5">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
-          </div>
+          <div class="icon-box mb-5"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg></div>
           <h3 class="font-semibold text-white text-[15px]">Workflow Automation</h3>
           <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">Reduce manual steps with scripted automation and scheduling. Improve reproducibility via API&#8209;based integration.</p>
         </div>
         <div class="card p-6 reveal" style="transition-delay:.16s">
-          <div class="icon-box mb-5">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-          </div>
+          <div class="icon-box mb-5"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
           <h3 class="font-semibold text-white text-[15px]">Regulatory Compliance</h3>
           <ul class="mt-2 text-[13px] text-white/40 leading-relaxed space-y-1 font-light">
             <li>&bull; 21 CFR Part 11 (FDA: electronic records)</li>
@@ -414,9 +440,7 @@
           </ul>
         </div>
         <div class="card p-6 reveal" style="transition-delay:.24s">
-          <div class="icon-box mb-5">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
-          </div>
+          <div class="icon-box mb-5"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg></div>
           <h3 class="font-semibold text-white text-[15px]">Advanced Reporting</h3>
           <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">Centralize process data into interactive dashboards for real&#8209;time insights in R&amp;D and QA.</p>
         </div>
@@ -434,41 +458,41 @@
         <p class="mt-4 text-white/40 font-light">We connect a broad range of lab instruments to your LIMS, regardless of vendor or protocol.</p>
       </div>
       <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div class="card p-5 reveal">
-          <p class="text-[14px] font-medium text-white">HPLC / UHPLC</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Waters Empower, Agilent ChemStation</p>
+        <div class="card p-5 reveal flex items-start gap-4">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">HPLC / UHPLC</p><p class="mt-1 text-[13px] text-white/35 font-light">Waters Empower, Agilent ChemStation</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.04s">
-          <p class="text-[14px] font-medium text-white">pH-meters</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Mettler Toledo, Hanna Instruments</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.04s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">pH-meters</p><p class="mt-1 text-[13px] text-white/35 font-light">Mettler Toledo, Hanna Instruments</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.08s">
-          <p class="text-[14px] font-medium text-white">Spectroscopy</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Raman, FTIR, UV/Vis, NIR</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.08s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Spectroscopy</p><p class="mt-1 text-[13px] text-white/35 font-light">Raman, FTIR, UV/Vis, NIR</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.12s">
-          <p class="text-[14px] font-medium text-white">TOC Analyzer</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Multiple vendors supported</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.12s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">TOC Analyzer</p><p class="mt-1 text-[13px] text-white/35 font-light">Multiple vendors supported</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.16s">
-          <p class="text-[14px] font-medium text-white">Osmometer</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Vapor pressure &amp; freezing point</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.16s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Osmometer</p><p class="mt-1 text-[13px] text-white/35 font-light">Vapor pressure &amp; freezing point</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.2s">
-          <p class="text-[14px] font-medium text-white">Solo VPE</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Variable pathlength spectroscopy</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.2s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Solo VPE</p><p class="mt-1 text-[13px] text-white/35 font-light">Variable pathlength spectroscopy</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.24s">
-          <p class="text-[14px] font-medium text-white">Microbiology</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Endoscan-V (Endosafe / Charles River)</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.24s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Microbiology</p><p class="mt-1 text-[13px] text-white/35 font-light">Endoscan-V (Endosafe / Charles River)</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.28s">
-          <p class="text-[14px] font-medium text-white">Balances</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Mettler Toledo, Sartorius</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.28s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Balances</p><p class="mt-1 text-[13px] text-white/35 font-light">Mettler Toledo, Sartorius</p></div>
         </div>
-        <div class="card p-5 reveal" style="transition-delay:.32s">
-          <p class="text-[14px] font-medium text-white">Climate / Environmental</p>
-          <p class="mt-1 text-[13px] text-white/35 font-light">Temperature, RH, pressure sensors</p>
+        <div class="card p-5 reveal flex items-start gap-4" style="transition-delay:.32s">
+          <div class="w-[3px] h-8 rounded-full bg-brand-500/40 flex-shrink-0 mt-0.5"></div>
+          <div><p class="text-[14px] font-medium text-white">Climate / Environmental</p><p class="mt-1 text-[13px] text-white/35 font-light">Temperature, RH, pressure sensors</p></div>
         </div>
       </div>
       <div class="mt-8 text-center reveal">
@@ -478,8 +502,9 @@
   </section>
 
   <!-- ============ QUALIFICATION FRAMEWORK ============ -->
-  <section id="qualification">
+  <section id="qualification" class="relative">
     <div class="section-divider"></div>
+    <div class="geo-circle" style="width:250px;height:250px;left:-60px;bottom:20%;opacity:.25"></div>
     <div class="max-w-5xl mx-auto px-6 lg:px-8 py-28">
       <div class="grid md:grid-cols-5 gap-16 items-start">
         <div class="md:col-span-2 reveal">
@@ -490,9 +515,7 @@
         <div class="md:col-span-3 space-y-4 reveal" style="transition-delay:.1s">
           <div class="card p-6">
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25L12 17.25 2.25 12l4.179-2.25m11.142 0L21.75 12l-9.75 5.25L2.25 12"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25L12 17.25 2.25 12l4.179-2.25m11.142 0L21.75 12l-9.75 5.25L2.25 12"/></svg></div>
               <div>
                 <h3 class="font-semibold text-white text-[15px]">GAMP5 Category 4: Configured Product</h3>
                 <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">The Labionexus platform is validated as a GAMP5 Category 4 Configured Product. The standard layer is qualified by Labionexus with full vendor documentation, ensuring a robust and auditable foundation.</p>
@@ -501,9 +524,7 @@
           </div>
           <div class="card p-6">
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"/></svg></div>
               <div>
                 <h3 class="font-semibold text-white text-[15px]">Site-specific IQ/OQ/PQ qualification</h3>
                 <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">Each client deployment includes a site-specific configurable layer with User Requirements Specification (URS), Risk Assessment (RA), Requirements Traceability Matrix (RTM), and full IQ/OQ/PQ protocols tailored to your environment.</p>
@@ -512,9 +533,7 @@
           </div>
           <div class="card p-6">
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg></div>
               <div>
                 <h3 class="font-semibold text-white text-[15px]">Vendor Qualification Package (VQP)</h3>
                 <p class="mt-2 text-[13px] text-white/40 leading-relaxed font-light">Every deployment includes a complete Vendor Qualification Package for your quality records. Each deployment includes IQ/OQ/PQ qualification delivered with our CSV partner network.</p>
@@ -534,7 +553,7 @@
   </section>
 
   <!-- ============ USE CASES ============ -->
-  <section id="use-cases" class="relative overflow-hidden">
+  <section id="use-cases">
     <div class="section-divider"></div>
     <div class="max-w-5xl mx-auto px-6 lg:px-8 py-28">
       <div class="text-center max-w-xl mx-auto reveal">
@@ -544,25 +563,19 @@
       </div>
       <div class="mt-16 grid md:grid-cols-3 gap-4">
         <div class="card p-8 reveal">
-          <div class="icon-box mb-6">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </div>
+          <div class="icon-box mb-6"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
           <p class="text-xl font-semibold text-white">Faster reporting</p>
           <p class="mt-1 text-[13px] font-medium accent-text">Reporting Time</p>
           <p class="mt-3 text-[13px] text-white/40 leading-relaxed font-light">Reduce reporting time with automated capture and pre&#8209;formatted outputs. No more manual copy&#8209;paste between systems.</p>
         </div>
         <div class="card p-8 reveal" style="transition-delay:.08s">
-          <div class="icon-box mb-6">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </div>
+          <div class="icon-box mb-6"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
           <p class="text-xl font-semibold text-white">Full traceability</p>
           <p class="mt-1 text-[13px] font-medium accent-text">Data Integrity</p>
           <p class="mt-3 text-[13px] text-white/40 leading-relaxed font-light">Eliminate manual transfer errors and ensure full traceability with automated audit trails at every step.</p>
         </div>
         <div class="card p-8 reveal" style="transition-delay:.16s">
-          <div class="icon-box mb-6">
-            <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
-          </div>
+          <div class="icon-box mb-6"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></div>
           <p class="text-xl font-semibold text-white">Connected systems</p>
           <p class="mt-1 text-[13px] font-medium accent-text">Interoperability</p>
           <p class="mt-3 text-[13px] text-white/40 leading-relaxed font-light">Connect your LIMS, ELN, and MES with your instruments through one validated integration project.</p>
@@ -583,32 +596,25 @@
         <h2 class="mt-5 text-3xl sm:text-[2.25rem] font-bold tracking-tight text-white">Discuss your integration project</h2>
         <p class="mt-4 text-white/40 font-light">Get in touch to discuss your instrument scope, LIMS environment, and CSV requirements. We respond within 24 hours.</p>
       </div>
-
       <div class="mt-16 grid lg:grid-cols-5 gap-8">
         <div class="lg:col-span-2 reveal">
           <div class="card p-6 space-y-6">
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></div>
               <div>
                 <p class="text-[13px] font-medium text-white/70">Email us</p>
                 <a href="mailto:info@labionexus.ch" class="text-[13px] text-brand-400 hover:text-brand-300 transition-colors">info@labionexus.ch</a>
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
               <div>
                 <p class="text-[13px] font-medium text-white/70">Location</p>
                 <p class="text-[13px] text-white/40">Switzerland</p>
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="icon-box">
-                <svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              </div>
+              <div class="icon-box"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
               <div>
                 <p class="text-[13px] font-medium text-white/70">Response time</p>
                 <p class="text-[13px] text-white/40">Within 24 hours</p>
@@ -616,7 +622,6 @@
             </div>
           </div>
         </div>
-
         <div class="lg:col-span-3 reveal" style="transition-delay:.1s">
           <form action="https://formsubmit.co/info@labionexus.ch" method="POST" class="card p-6 sm:p-8 space-y-5">
             <input type="hidden" name="_subject" value="New message from labionexus.ch">
@@ -624,34 +629,16 @@
             <input type="hidden" name="_next" value="https://labionexus.ch#contact">
             <input type="text" name="_honey" style="display:none">
             <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label class="block text-[13px] font-medium text-white/50 mb-2">Name <span class="text-brand-400">*</span></label>
-                <input name="name" required placeholder="Your full name" class="input-field" />
-              </div>
-              <div>
-                <label class="block text-[13px] font-medium text-white/50 mb-2">Organization</label>
-                <input name="organization" placeholder="Company or institution" class="input-field" />
-              </div>
+              <div><label class="block text-[13px] font-medium text-white/50 mb-2">Name <span class="text-brand-400">*</span></label><input name="name" required placeholder="Your full name" class="input-field" /></div>
+              <div><label class="block text-[13px] font-medium text-white/50 mb-2">Organization</label><input name="organization" placeholder="Company or institution" class="input-field" /></div>
             </div>
             <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label class="block text-[13px] font-medium text-white/50 mb-2">Email <span class="text-brand-400">*</span></label>
-                <input name="email" type="email" required placeholder="you@example.com" class="input-field" />
-              </div>
-              <div>
-                <label class="block text-[13px] font-medium text-white/50 mb-2">Subject</label>
-                <input name="subject" placeholder="How can we help?" class="input-field" />
-              </div>
+              <div><label class="block text-[13px] font-medium text-white/50 mb-2">Email <span class="text-brand-400">*</span></label><input name="email" type="email" required placeholder="you@example.com" class="input-field" /></div>
+              <div><label class="block text-[13px] font-medium text-white/50 mb-2">Subject</label><input name="subject" placeholder="How can we help?" class="input-field" /></div>
             </div>
-            <div>
-              <label class="block text-[13px] font-medium text-white/50 mb-2">Message <span class="text-brand-400">*</span></label>
-              <textarea name="message" rows="5" required placeholder="Describe your project, instruments, or integration needs..." class="input-field resize-y"></textarea>
-            </div>
+            <div><label class="block text-[13px] font-medium text-white/50 mb-2">Message <span class="text-brand-400">*</span></label><textarea name="message" rows="5" required placeholder="Describe your project, instruments, or integration needs..." class="input-field resize-y"></textarea></div>
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-1">
-              <button class="btn-primary" type="submit">
-                Send message
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
-              </button>
+              <button class="btn-primary" type="submit">Send message <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg></button>
               <p class="text-[12px] text-white/25 font-light">We respect your privacy. No spam, ever.</p>
             </div>
           </form>
@@ -666,13 +653,7 @@
       <div class="py-16 grid md:grid-cols-3 gap-12">
         <div>
           <a href="#" class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl bg-surface-2 grid place-items-center border border-line">
-              <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/>
-                <circle cx="7" cy="7" r="1.5"/>
-                <circle cx="16" cy="14" r="1.5"/>
-              </svg>
-            </div>
+            <div class="h-10 w-10 rounded-xl bg-surface-2 grid place-items-center border border-line"><svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-400" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17c4 0 4-10 8-10s4 10 8 10" stroke-linecap="round"/><circle cx="7" cy="7" r="1.5"/><circle cx="16" cy="14" r="1.5"/></svg></div>
             <span class="font-semibold tracking-tight text-[15px] text-white">Labionexus</span>
           </a>
           <p class="mt-5 text-[13px] text-white/30 max-w-xs leading-relaxed font-light">Connecting your lab instruments to your LIMS. CSV&#8209;validated, built for mid&#8209;pharma and CDMOs.</p>
@@ -704,9 +685,7 @@
             Start a conversation
             <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
           </a>
-          <p class="mt-4 text-[13px] text-white/35 font-light">
-            <a href="mailto:info@labionexus.ch" class="hover:text-white/60 transition-colors">info@labionexus.ch</a>
-          </p>
+          <p class="mt-4 text-[13px] text-white/35 font-light"><a href="mailto:info@labionexus.ch" class="hover:text-white/60 transition-colors">info@labionexus.ch</a></p>
         </div>
       </div>
       <div class="py-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top: 1px solid rgba(255,255,255,.04);">
@@ -724,10 +703,12 @@
     toggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
+    const header = document.getElementById('site-header');
     const progressBar = document.getElementById('scroll-progress');
     window.addEventListener('scroll', () => {
       const h = document.documentElement;
       progressBar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+      header.classList.toggle('header-scrolled', window.scrollY > 20);
     }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -736,15 +717,21 @@
     document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger,.line-grow')
       .forEach(el => observer.observe(el));
 
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--glow-x', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--glow-y', (e.clientY - r.top) + 'px');
+      });
+    });
+
     function animateCounter(el, target, suffix) {
       const num = parseInt(target);
       if (isNaN(num)) return;
-      const duration = 1600;
-      const start = performance.now();
+      const duration = 1600, start = performance.now();
       function tick(now) {
         const t = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(num * ease) + (suffix || '');
+        el.textContent = Math.round(num * (1 - Math.pow(1 - t, 3))) + (suffix || '');
         if (t < 1) requestAnimationFrame(tick);
       }
       el.textContent = '0' + (suffix || '');
@@ -754,8 +741,7 @@
       entries.forEach(e => {
         if (!e.isIntersecting || e.target.dataset.counted) return;
         e.target.dataset.counted = '1';
-        const text = e.target.textContent.trim();
-        const match = text.match(/^(\d+)(.*)$/);
+        const match = e.target.textContent.trim().match(/^(\d+)(.*)$/);
         if (match) animateCounter(e.target, match[1], match[2]);
       });
     }, { threshold: 0.5 });
