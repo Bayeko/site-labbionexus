@@ -396,6 +396,10 @@
           <p class="text-white/45 leading-[1.8] font-light">
             We focus on simplicity, compliance, and interoperability, enabling labs to evolve into fully connected, data&#8209;driven environments.
           </p>
+          <a href="https://ch.linkedin.com/in/amir-messadene" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[13px] text-brand-400 hover:text-brand-300 font-medium transition-colors mt-2">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect with Amir on LinkedIn
+          </a>
           <div class="pt-4 flex flex-wrap gap-2 stagger">
             <span class="tag"><svg class="h-3 w-3 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Biotech expertise</span>
             <span class="tag"><svg class="h-3 w-3 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Lab automation</span>
@@ -600,7 +604,20 @@
         <h2 class="mt-5 text-3xl sm:text-[2.25rem] font-bold tracking-tight text-white">Discuss your integration project</h2>
         <p class="mt-4 text-white/40 font-light">Get in touch to discuss your instrument scope, LIMS environment, and CSV requirements. We respond within 24 hours.</p>
       </div>
-      <div class="mt-16 grid lg:grid-cols-5 gap-8">
+      <div class="mt-12 reveal">
+        <div class="card p-6 sm:p-8 text-center max-w-lg mx-auto">
+          <div class="icon-box mx-auto mb-4"><svg class="h-5 w-5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg></div>
+          <p class="text-[15px] font-medium text-white">Prefer a live conversation?</p>
+          <p class="mt-2 text-[13px] text-white/40 font-light">Book a 20-min discovery call directly.</p>
+          <a href="https://calendly.com/messadene-amir/20min" target="_blank" rel="noopener" class="btn-primary mt-5 mx-auto">
+            Book a discovery call
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+          <p class="mt-4 text-[12px] text-white/25 font-light">Or fill the form below for a written response within 24h.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-5 gap-8">
         <div class="lg:col-span-2 reveal">
           <div class="card p-6 space-y-6">
             <div class="flex items-start gap-4">
@@ -643,7 +660,7 @@
             <div><label class="block text-[13px] font-medium text-white/50 mb-2">Message <span class="text-brand-400">*</span></label><textarea name="message" rows="5" required placeholder="Describe your project, instruments, or integration needs..." class="input-field resize-y"></textarea></div>
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-1">
               <button class="btn-primary" type="submit">Send message <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg></button>
-              <p class="text-[12px] text-white/25 font-light">We respect your privacy. No spam, ever.</p>
+              <p class="text-[12px] text-white/25 font-light">We process your data per Swiss nLPD and EU GDPR. <a href="/privacy.html" class="text-brand-400/60 hover:text-brand-300 transition-colors">Privacy Policy</a></p>
             </div>
           </form>
         </div>
@@ -694,7 +711,11 @@
       </div>
       <div class="py-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top: 1px solid rgba(255,255,255,.04);">
         <p class="text-[12px] text-white/20 font-light">&copy; <span id="year"></span> Labionexus. All rights reserved.</p>
-        <p class="text-[12px] text-white/20 font-light">Built in Switzerland</p>
+        <div class="flex items-center gap-4">
+          <a href="/privacy.html" class="text-[12px] text-white/20 hover:text-white/40 transition-colors font-light">Privacy Policy</a>
+          <span class="text-white/10">|</span>
+          <p class="text-[12px] text-white/20 font-light">Built in Switzerland</p>
+        </div>
       </div>
     </div>
   </footer>
