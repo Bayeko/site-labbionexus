@@ -170,7 +170,7 @@
   <div>
     <div class="eyebrow">Instrument data integrity for regulated labs</div>
     <h1>Signed instrument records your auditor can <span class="hl">re-verify</span>.</h1>
-    <p class="sub">We capture each benchtop reading at the source and sign it on the gateway at the point of capture, then route it into your LIMS or ELN. Your auditor checks the record against the device public key, with nothing of ours installed.</p>
+    <p class="sub">We capture each benchtop reading at the source and sign it on the gateway at the point of capture. The result is a Trace: a record routed into your LIMS or ELN that your auditor checks against the device public key, with nothing of ours installed.</p>
     <a class="btn" href="https://calendly.com/amir-messadene-labionexus/30min">Book a 20-minute discovery call</a>
     <div class="cred">
       <span>GMP data integrity at Roche</span>
@@ -183,7 +183,7 @@
     <div class="flow-row src"><b>Balances</b><span>raw export</span><i class="dot"></i></div>
     <div class="flow-row src"><b>pH-meters</b><span>raw export</span><i class="dot"></i></div>
     <div class="flow-row src"><b>Karl Fischer</b><span>raw export</span><i class="dot"></i></div>
-    <div class="flow-sig">Device-signed handoff &middot; Ed25519 / SHA-256</div>
+    <div class="flow-sig">Trace signed on the gateway &middot; Ed25519 / SHA-256</div>
     <div class="flow-row flow-ok dst"><b>LIMS</b><span>route built with you</span><i class="dot"></i></div>
     <div class="flow-row flow-ok dst"><b>ELN</b><span>route built with you</span><i class="dot"></i></div>
   </div>
@@ -194,7 +194,7 @@
   <div class="eyebrow">The problem</div>
   <h2>Every reading retyped by hand takes two people to move one number.</h2>
   <p>The standalone instruments your analysts still read and retype, balances, pH meters, titrators, produce a record that is not controlled at the moment it is created. That is what makes a later change both possible and undetectable, and why a second person has to check every number.</p>
-  <p>We sign the reading on the gateway at the point of capture. The signing key is generated on the gateway and never transmitted, so a valid signature can only have been produced by that gateway's own key. <strong>Capture is read-only: the instrument is not driven, reconfigured or updated, and its qualified state is untouched.</strong> Signatures by your people stay in the system where you sign today, under your own Part 11 or Annex 11 controls.</p>
+  <p>We sign the reading on the gateway at the point of capture, producing a Trace. The signing key is generated on the gateway and never transmitted, so a valid Trace can only have been produced by that gateway's own key. <strong>Capture is read-only: the instrument is not driven, reconfigured or updated, and its qualified state is untouched.</strong> Signatures by your people stay in the system where you sign today, under your own Part 11 or Annex 11 controls.</p>
 </div></section>
 
 <section class="rv" id="scope"><div class="wrap">
@@ -218,9 +218,10 @@
     <li>Site-specific URS, Risk Assessment and Requirements Traceability Matrix</li>
     <li>Full IQ/OQ/PQ protocols tailored to your environment</li>
     <li>Vendor Qualification Package ready for execution by your QA or the CSV resource you already use</li>
+    <li>Every Trace stays queryable and independently re-verifiable, a record for your quality file</li>
   </ul>
   <div class="challenge">
-    <p><strong>The test we invite you to run on any supplier, including us:</strong> ask for one reading signed on the device that captured it, at the moment of capture, plus the public key of that device. Then see whether you can check it yourself with nothing of theirs installed. Ask us the same, and we will run that check with you.</p>
+    <p><strong>The test we invite you to run on any supplier, including us:</strong> ask for one Trace, a reading signed on the device that captured it, at the moment of capture, plus the public key of that device. Then see whether you can check it yourself with nothing of theirs installed. Ask us for one Trace, and we will run that check with you.</p>
   </div>
   <div class="ribbon">
     <span class="chip">21 CFR Part 11</span>
